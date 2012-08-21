@@ -120,6 +120,7 @@ cleared."
 
 ;;; main interface
 
+;;;###autoload
 (defun window-end-visible (&optional window update)
   "Return the last visible position in WINDOW.
 
