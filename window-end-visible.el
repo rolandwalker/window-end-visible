@@ -7,7 +7,7 @@
 ;; Version: 0.0.2
 ;; Last-Updated: 22 Aug 2012
 ;; EmacsWiki: WindowEndVisible
-;; Keywords:
+;; Keywords: extensions
 ;;
 ;; Simplified BSD License
 ;;
