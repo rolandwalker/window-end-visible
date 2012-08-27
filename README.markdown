@@ -23,4 +23,9 @@ The speed penalty of `window-end-visible` over `window-end` varies
 depending on your configuration.  For example, tabbar.el makes
 calling `pos-visible-in-window-p` quite expensive.
 
+Compatibility and Requirements
+------------------------------
+Tested only on GNU Emacs version 24.1
+
+No external dependencies
 
