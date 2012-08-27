@@ -146,7 +146,6 @@ WINDOW and UPDATE are as documented at `window-end'."
       (let* ((pos (window-end window update))
              (orig-pos pos)
              (lim (max (window-start window) (with-current-buffer (window-buffer window) (point-min)))))
-        (setq pos-visible-in-window-p-memoized-alist nil)
         ;; hop back and forth to minimize the number of tests, may not
         ;; matter much now that it is memoized
         (while (and (not (window-end-visible-pos-visible-p pos window cwc))
