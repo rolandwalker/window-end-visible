@@ -4,8 +4,8 @@
 ;;
 ;; Author: Roland Walker walker@pobox.com
 ;; URL: https://github.com/rolandwalker/window-end-visible.el
-;; Version: 0.0.1
-;; Last-Updated: 21 Aug 2012
+;; Version: 0.0.2
+;; Last-Updated: 22 Aug 2012
 ;; EmacsWiki: WindowEndVisible
 ;; Keywords:
 ;;
