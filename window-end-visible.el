@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (c) 2012 Roland Walker
 ;;
-;; Author: Roland Walker walker@pobox.com
+;; Author: Roland Walker <walker@pobox.com>
 ;; Homepage: http://github.com/rolandwalker/window-end-visible
 ;; URL: http://raw.github.com/rolandwalker/window-end-visible/master/window-end-visible.el
 ;; Version: 0.0.2
