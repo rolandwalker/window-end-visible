@@ -1,9 +1,24 @@
 Overview
 ========
+
 Find the last visible point in an Emacs window.
+
+Quickstart
+----------
+
+	(require 'window-end-visible)
+
+	;; open a buffer larger than the window
+
+	;; may return nil
+	M-: (pos-visible-in-window-p (window-end)) RET
+
+	;; always returns t
+	M-: (pos-visible-in-window-p (window-end-visible)) RET
 
 window-end-visible
 ------------------
+
 Window-end-visible.el has no user-level interface, and is only
 useful when programming Emacs Lisp.
 
@@ -25,6 +40,7 @@ calling `pos-visible-in-window-p` quite expensive.
 
 Compatibility and Requirements
 ------------------------------
+
 Tested on GNU Emacs versions 23.3 and 24.1
 
 No external dependencies
