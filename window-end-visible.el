@@ -116,29 +116,31 @@
 
 ;;; utility functions
 
-(defun window-end-visible-pos-visible-p (pos window window-configuration)
+(defun window-end-visible-pos-visible-p (pos window window-configuration &optional partially)
   "A memoized version of `pos-visible-in-window-p'.
 
 POS and WINDOW are as documented at `pos-visible-in-window-p'.
 
 WINDOW-CONFIGURATION should be the current window configuration.
 When WINDOW-CONFIGURATION changes, the memoization data is
-cleared."
+cleared.
+
+PARTIALLY is as documented at `pos-visible-in-window-p'."
   (unless (equal (car window-end-visible-pos-visible-p-memory)
                  window-configuration)
     (setq window-end-visible-pos-visible-p-memory (list window-configuration nil)))
   (let ((vis nil))
-    (if (assoc (list pos window) (cdr window-end-visible-pos-visible-p-memory))
-        (setq vis (cdr (assoc (list pos window) (cdr window-end-visible-pos-visible-p-memory))))
+    (if (assoc (list pos window partially) (cdr window-end-visible-pos-visible-p-memory))
+        (setq vis (cdr (assoc (list pos window partially) (cdr window-end-visible-pos-visible-p-memory))))
       ;; else
-      (setq vis (pos-visible-in-window-p pos window))
-      (push (cons (list pos window) vis) (cdr window-end-visible-pos-visible-p-memory))
+      (setq vis (pos-visible-in-window-p pos window partially))
+      (push (cons (list pos window partially) vis) (cdr window-end-visible-pos-visible-p-memory))
       vis)))
 
 ;;; main interface
 
 ;;;###autoload
-(defun window-end-visible (&optional window update)
+(defun window-end-visible (&optional window update partially)
   "Return the last visible position in WINDOW.
 
 Works around a limitation of `window-end', at a speed penalty.
@@ -152,12 +154,13 @@ The speed penalty varies greatly depending on your configuration.
 For example, tabbar.el makes calling `pos-visible-in-window-p'
 quite expensive.
 
-WINDOW and UPDATE are as documented at `window-end'."
+WINDOW and UPDATE are as documented at `window-end'.
+
+PARTIALLY is as documented at `pos-visible-in-window-p'."
   (callf or window (selected-window))
   (let ((cwc (current-window-configuration)))
-    (if (and (eq window (car window-end-visible-cache))
-             (equal cwc (cadr window-end-visible-cache)))
-        (caddr window-end-visible-cache)
+    (if (equal (car window-end-visible-cache) (list window cwc partially))
+        (cdr window-end-visible-cache)
       ;; else
       (setq window-end-visible-cache nil)
       (let* ((pos (window-end window update))
@@ -165,24 +168,24 @@ WINDOW and UPDATE are as documented at `window-end'."
              (lim (max (window-start window) (with-current-buffer (window-buffer window) (point-min)))))
         ;; hop back and forth to minimize the number of tests, may not
         ;; matter much now that it is memoized
-        (while (and (not (window-end-visible-pos-visible-p pos window cwc))
+        (while (and (not (window-end-visible-pos-visible-p pos window cwc partially))
                     (> (- pos 20) lim))
           (decf pos 20))
-        (while (and (window-end-visible-pos-visible-p pos window cwc)
+        (while (and (window-end-visible-pos-visible-p pos window cwc partially)
                     (< (+ pos 10) orig-pos))
           (incf pos 10))
-        (while (and (not (window-end-visible-pos-visible-p pos window cwc))
+        (while (and (not (window-end-visible-pos-visible-p pos window cwc partially))
                       (> (- pos 5) lim))
           (decf pos 5))
-        (while (and (window-end-visible-pos-visible-p pos window cwc)
+        (while (and (window-end-visible-pos-visible-p pos window cwc partially)
                     (< (+ pos 1) orig-pos))
           (incf pos))
-        (while (and (not (window-end-visible-pos-visible-p pos window cwc))
+        (while (and (not (window-end-visible-pos-visible-p pos window cwc partially))
                     (> (- pos 1) lim))
           (decf pos))
-        (if (window-end-visible-pos-visible-p pos window cwc)
+        (if (window-end-visible-pos-visible-p pos window cwc partially)
             (progn
-              (setq window-end-visible-cache (list window cwc pos))
+              (setq window-end-visible-cache (cons (list window cwc partially) pos))
               pos)
           nil)))))
 
