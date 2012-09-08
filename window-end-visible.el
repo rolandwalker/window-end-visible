@@ -111,30 +111,29 @@
 
 ;;; variables
 
-(defvar window-end-visible-cache                nil "Saved value of last visible position.")
-(defvar window-end-visible-pos-visible-p-memory nil "Memoization data for `window-end-visible-pos-visible-p'.")
+(defvar window-end-visible-cache               nil "Cached value of last visible position.")
+(defvar window-end-visible-pos-visible-p-cache nil "Cache data for `window-end-visible-pos-visible-p'.")
 
 ;;; utility functions
 
 (defun window-end-visible-pos-visible-p (pos window window-configuration &optional partially)
-  "A memoized version of `pos-visible-in-window-p'.
+  "A cached version of `pos-visible-in-window-p'.
 
 POS and WINDOW are as documented at `pos-visible-in-window-p'.
 
 WINDOW-CONFIGURATION should be the current window configuration.
-When WINDOW-CONFIGURATION changes, the memoization data is
-cleared.
+When WINDOW-CONFIGURATION changes, the cache data is cleared.
 
 PARTIALLY is as documented at `pos-visible-in-window-p'."
-  (unless (equal (car window-end-visible-pos-visible-p-memory)
+  (unless (equal (car window-end-visible-pos-visible-p-cache)
                  window-configuration)
-    (setq window-end-visible-pos-visible-p-memory (list window-configuration nil)))
+    (setq window-end-visible-pos-visible-p-cache (list window-configuration nil)))
   (let ((vis nil))
-    (if (assoc (list pos window partially) (cdr window-end-visible-pos-visible-p-memory))
-        (setq vis (cdr (assoc (list pos window partially) (cdr window-end-visible-pos-visible-p-memory))))
+    (if (assoc (list pos window partially) (cdr window-end-visible-pos-visible-p-cache))
+        (setq vis (cdr (assoc (list pos window partially) (cdr window-end-visible-pos-visible-p-cache))))
       ;; else
       (setq vis (pos-visible-in-window-p pos window partially))
-      (push (cons (list pos window partially) vis) (cdr window-end-visible-pos-visible-p-memory))
+      (push (cons (list pos window partially) vis) (cdr window-end-visible-pos-visible-p-cache))
       vis)))
 
 ;;; main interface
@@ -167,7 +166,7 @@ PARTIALLY is as documented at `pos-visible-in-window-p'."
              (orig-pos pos)
              (lim (max (window-start window) (with-current-buffer (window-buffer window) (point-min)))))
         ;; hop back and forth to minimize the number of tests, may not
-        ;; matter much now that it is memoized
+        ;; matter much now that it is cached
         (while (and (not (window-end-visible-pos-visible-p pos window cwc partially))
                     (> (- pos 20) lim))
           (decf pos 20))
