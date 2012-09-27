@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/rolandwalker/window-end-visible.png)](http://travis-ci.org/rolandwalker/window-end-visible)
+
 Overview
 ========
 
@@ -44,4 +46,3 @@ Compatibility and Requirements
 Tested on GNU Emacs versions 23.3 and 24.1
 
 No external dependencies
-
