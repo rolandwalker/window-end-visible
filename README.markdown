@@ -8,15 +8,17 @@ Find the last visible point in an Emacs window.
 Quickstart
 ----------
 
-	(require 'window-end-visible)
-
-	;; open a buffer larger than the window
-
-	;; may return nil
-	M-: (pos-visible-in-window-p (window-end)) RET
-
-	;; always returns t
-	M-: (pos-visible-in-window-p (window-end-visible)) RET
+```lisp
+(require 'window-end-visible)
+ 
+;; open a buffer larger than the window
+ 
+;; may return nil
+(pos-visible-in-window-p (window-end))
+ 
+;; always returns t
+(pos-visible-in-window-p (window-end-visible))
+```
 
 window-end-visible
 ------------------
@@ -30,7 +32,9 @@ works around a limitation of `window-end`, at a speed penalty.
 The issue this function solves is that the following is not true
 as might be expected:
 
-	(pos-visible-in-window-p (window-end))
+```lisp
+(pos-visible-in-window-p (window-end))
+```
 
 `window-end-visible` returns the "true" window end: the last
 visible position in the window, verified by testing with
