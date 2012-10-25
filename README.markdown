@@ -20,8 +20,8 @@ Quickstart
 (pos-visible-in-window-p (window-end-visible))
 ```
 
-window-end-visible
-------------------
+Explanation
+-----------
 
 Window-end-visible.el has no user-level interface, and is only
 useful when programming Emacs Lisp.
@@ -41,7 +41,7 @@ visible position in the window, verified by testing with
 `pos-visible-in-window-p`.
 
 The speed penalty of `window-end-visible` over `window-end` varies
-depending on your configuration.  For example, tabbar.el makes
+depending on your configuration.  For example, [tabbar.el](https://github.com/dholm/tabbar) makes
 calling `pos-visible-in-window-p` quite expensive.
 
 Compatibility and Requirements
