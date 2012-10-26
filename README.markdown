@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/rolandwalker/window-end-visible.png)](http://travis-ci.org/rolandwalker/window-end-visible)
+[![Build Status](https://secure.travis-ci.org/rolandwalker/window-end-visible.png?branch=master)](http://travis-ci.org/rolandwalker/window-end-visible)
 
 Overview
 ========
