@@ -47,7 +47,7 @@ calling `pos-visible-in-window-p` quite expensive.
 Compatibility and Requirements
 ------------------------------
 
-	GNU Emacs version 24.3-devel     : yes, at the time of writing
+	GNU Emacs version 24.4-devel     : yes, at the time of writing
 	GNU Emacs version 24.3           : yes
 	GNU Emacs version 23.3           : yes
 	GNU Emacs version 22.3 and lower : unknown
