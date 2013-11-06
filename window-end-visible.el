@@ -1,6 +1,6 @@
 ;;; window-end-visible.el --- Find the last visible point in a window
 ;;
-;; Copyright (c) 2012 Roland Walker
+;; Copyright (c) 2012-13 Roland Walker
 ;;
 ;; Author: Roland Walker <walker@pobox.com>
 ;; Homepage: http://github.com/rolandwalker/window-end-visible
