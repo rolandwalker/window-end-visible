@@ -1,12 +1,10 @@
 [![Build Status](https://secure.travis-ci.org/rolandwalker/window-end-visible.png?branch=master)](http://travis-ci.org/rolandwalker/window-end-visible)
 
-Overview
-========
+# Overview
 
 Find the last visible point in an Emacs window.
 
-Quickstart
-----------
+## Quickstart
 
 ```elisp
 (require 'window-end-visible)
@@ -20,8 +18,7 @@ Quickstart
 (pos-visible-in-window-p (window-end-visible))
 ```
 
-Explanation
------------
+## Explanation
 
 Window-end-visible.el has no user-level interface, and is only
 useful when programming Emacs Lisp.
@@ -44,8 +41,7 @@ The speed penalty of `window-end-visible` over `window-end` varies
 depending on your configuration.  For example, [tabbar.el](https://github.com/dholm/tabbar) makes
 calling `pos-visible-in-window-p` quite expensive.
 
-Compatibility and Requirements
-------------------------------
+## Compatibility and Requirements
 
 	GNU Emacs version 24.4-devel     : yes, at the time of writing
 	GNU Emacs version 24.3           : yes
