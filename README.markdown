@@ -8,7 +8,7 @@ Find the last visible point in an Emacs window.
 Quickstart
 ----------
 
-```lisp
+```elisp
 (require 'window-end-visible)
  
 ;; open a buffer larger than the window
@@ -32,7 +32,7 @@ works around a limitation of `window-end`, at a speed penalty.
 The issue this function solves is that the following is not true
 as might be expected:
 
-```lisp
+```elisp
 (pos-visible-in-window-p (window-end))
 ```
 
