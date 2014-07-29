@@ -20,7 +20,7 @@ Find the last visible point in an Emacs window.
 
 ## Explanation
 
-Window-end-visible.el has no user-level interface, and is only
+`window-end-visible.el` has no user-level interface, and is only
 useful when programming Emacs Lisp.
 
 This library provides the function `window-end-visible`, which
