@@ -4,6 +4,10 @@
 
 Find the last visible point in an Emacs window.
 
+ * [Quickstart](#quickstart)
+ * [Explanation](#explanation)
+ * [Compatibility and Requirements](#compatibility-and-requirements)
+
 ## Quickstart
 
 ```elisp
